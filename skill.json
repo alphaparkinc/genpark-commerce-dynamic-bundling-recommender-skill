@@ -1,0 +1,46 @@
+{
+  "name": "genpark-commerce-dynamic-bundling-recommender-skill",
+  "version": "1.0.0",
+  "description": "Autonomous Commerce Dynamic Bundling & Cross-Sell Recommender (inspired by Meta Muse, Shopify & Instacart Smart Carts). Analyzes cart items and intent, computes product complementary affinity scores, respects merchant margin constraints, and synthesizes personalized discount bundles.",
+  "tools": [
+    {
+      "name": "recommend_commerce_bundles",
+      "description": "Dynamic product bundling: analyze shopping cart items, identify high-affinity cross-sell products, apply margin-safe discounts, and synthesize compelling bundle proposals.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "recommend_dynamic_bundles",
+              "evaluate_affinity_matrix",
+              "get_catalog_items"
+            ],
+            "description": "Bundling action."
+          },
+          "cart_items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Current cart items [sku, name, price, category]."
+          },
+          "catalog_candidates": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Candidate add-on items [sku, name, price, cost, category]."
+          },
+          "max_bundles": {
+            "type": "integer",
+            "description": "Maximum bundle offers to generate (default 3)."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
